@@ -1,0 +1,17 @@
+<hr>
+<p>
+  car-table works!
+</p>
+<input type="button" name="submit" value="Get Data" (click)="getCarData()" />
+<table border="2">
+  <thead>
+    <th> Type </th>
+    <th> Brand </th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of carArray">
+      <td> {{data.carType}} </td>
+      <td> {{data.carBrand}} </td>
+    </tr>
+  </tbody>
+</table>
