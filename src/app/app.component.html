@@ -2,11 +2,39 @@
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
-  </h1>
-  
+  </h1>  
 </div>
 
 <hr>
-<app-car-form> </app-car-form>
-<app-car-table></app-car-table>
+<table border="2">
+  <thead>
+    <th> Json </th>
+    <th> Id </th>
+    <!-- <th> First Name </th> -->
+    <!-- <th> Last Name </th> -->
+    <th> Name </th>
+    <th> Year </th>
+    <th> Color </th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of displayData?.data">
+      <td> {{ data | json }} </td>
+      <td> {{ data.id }} </td>
+      <td> {{ data.first_name }} </td>
+      <td> {{ data.last_name }} </td>
+      <td> {{ data.name }} </td>
+      <td> {{ data.year }} </td>
+      <td> {{ data.color }} </td>
+      <td> {{ data.userId }} </td>
+      <td> {{ data.id }} </td>
+      <td> {{ data.title }} </td>
+      <td> {{ data.body }} </td>
+    </tr>
+  </tbody>
+</table>
+
+
 <hr>
+<!--<app-car-form> </app-car-form>
+<app-car-table></app-car-table>
+<hr> -->
