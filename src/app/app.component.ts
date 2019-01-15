@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-root',
@@ -20,11 +21,20 @@ export class AppComponent implements OnInit {
   
 
   // constructor(private http: Http) {}
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient, private appService: AppService){}
+
+  // getData(){
+  //   this.http.get(this.dataUrl).subscribe(response => {
+  //     this.displayData = response;
+  //   })
+  // }
 
   ngOnInit(){
-    this.http.get(this.dataUrl).subscribe(response => {
-      this.displayData = response;
-    })
+    this.getData();
   }
+  //Observable Data
+  getData(): void{
+    this.appService.getData().subscribe(data => this.displayData = data);
+  }
+
 }
