@@ -25,9 +25,13 @@ export class AppService {
   }
 
   deleteData (id: AppInterface | number): Observable<AppInterface>{
-    const dataId = typeof id === 'number' ? id : id.id;
-    const url = `${this.dataUrl}/${id}`;
+    // const dataId = typeof id === 'number' ? id : id.id;
+    // const url = `${this.dataUrl}/${id}`;
 
-    return this.http.delete<AppInterface>(url);
+    return this.http.delete<AppInterface>(this.dataUrl);
+  }
+
+  updateData(data: AppInterface): Observable<AppInterface>{
+    return this.http.put<AppInterface>(this.dataUrl + '/1', data);
   }
 }

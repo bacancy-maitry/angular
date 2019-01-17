@@ -12,7 +12,6 @@ export class AppComponent implements OnInit {
   heading = 'Practice app';
 
   public displayData: Array<AppInterface> = [];
-  // public postData:any = [];
 
   constructor(private http: HttpClient, private appService: AppService){}
 
@@ -23,10 +22,10 @@ export class AppComponent implements OnInit {
   getData(): void{
     console.log(this.displayData);
     this.appService.getData().subscribe(response => { 
-      if(response){
-      this.displayData = response; 
+      // if(response){
+      this.displayData = response.slice(0,10); 
         console.log(response);
-      }
+      // }
     });
   }
 
@@ -40,6 +39,10 @@ export class AppComponent implements OnInit {
   deleteData(id: AppInterface): void{
     this.displayData = this.displayData.filter(i => i !== id);
     this.appService.deleteData(id).subscribe();
+  }
+
+  updateData(v): void{
+    this.appService.updateData(v).subscribe();
   }
 
 }
