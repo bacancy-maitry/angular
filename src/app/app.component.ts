@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppService } from 'src/app/app.service';
+import { AppInterface } from './app-interface';
 
 @Component({
   selector: 'app-root',
@@ -10,31 +11,29 @@ import { AppService } from 'src/app/app.service';
 export class AppComponent implements OnInit {
   title = 'Practice app';
 
-  displayData: any;
-  // private dataUrl = 'https://jsonplaceholder.typicode.com/posts'; //Working
-  // private dataUrl = 'https://jsonplaceholder.typicode.com/posts/1'
-  // private dataUrl = 'https://jsonplaceholder.typicode.com/posts?userId=1';
-  // private dataUrl = 'https://reqres.in/api/users?page=2'; //Working
-  private dataUrl = 'https://reqres.in/api/unknown'; //Working
-  // private dataUrl = 'https://reqres.in/api/unknown/2';
-  // private dataUrl = 'https://reqres.in/api/users';
-  
+  public displayData: Array<AppInterface[]> = [];
+  public postData:any;
 
-  // constructor(private http: Http) {}
   constructor(private http: HttpClient, private appService: AppService){}
-
-  // getData(){
-  //   this.http.get(this.dataUrl).subscribe(response => {
-  //     this.displayData = response;
-  //   })
-  // }
 
   ngOnInit(){
     this.getData();
   }
-  //Observable Data
+  // Observable Data
   getData(): void{
-    this.appService.getData().subscribe(data => this.displayData = data);
+    console.log(this.displayData);
+    this.appService.getData().subscribe(response => { 
+      if(response){
+      this.displayData.push(response); 
+        console.log(response);
+      }
+    });
+  }
+
+  addData(name: string): void{
+    this.appService.addData({name} as AppInterface).subscribe(name => {
+      this.postData = (name);
+    });
   }
 
 }

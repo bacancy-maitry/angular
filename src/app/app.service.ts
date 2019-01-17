@@ -1,17 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { AppInterface } from './app-interface';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  private dataUrl = 'https://reqres.in/api/users?page=2';
+  // private dataUrl = 'https://reqres.in/api/users?page=2';
+  private dataUrl = 'https://reqres.in/api/unknown/2';
+  // private dataUrl = 'https://jsonplaceholder.typicode.com/posts/1';
+
 
   constructor(private http: HttpClient) { }
 
-  getData(): Observable<any[]>{
-    return this.http.get<any[]>(this.dataUrl);
+  getData(): Observable<AppInterface[]>{
+    return this.http.get<AppInterface[]>(this.dataUrl);
+  }
+
+  addData(name: AppInterface): Observable<AppInterface[]>{
+    return this.http.post<AppInterface[]>(this.dataUrl, name);
   }
 }
