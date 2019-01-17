@@ -11,7 +11,7 @@ import { AppInterface } from './app-interface';
 export class AppComponent implements OnInit {
   title = 'Practice app';
 
-  public displayData: Array<AppInterface[]> = [];
+  public displayData: Array<AppInterface> = [];
   public postData:any;
 
   constructor(private http: HttpClient, private appService: AppService){}
@@ -24,16 +24,21 @@ export class AppComponent implements OnInit {
     console.log(this.displayData);
     this.appService.getData().subscribe(response => { 
       if(response){
-      this.displayData.push(response); 
+      this.displayData = response; 
         console.log(response);
       }
     });
   }
 
-  addData(name: string): void{
-    this.appService.addData({name} as AppInterface).subscribe(name => {
-      this.postData = (name);
-    });
+  // addData(name: string): void{
+  //   this.appService.addData({name} as AppInterface).subscribe(name => {
+  //     this.postData = (name);
+  //   });
+  // }
+
+  deleteData(id: AppInterface): void{
+    this.displayData = this.displayData.filter(i => i !== id);
+    this.appService.deleteData(id).subscribe();
   }
 
 }
