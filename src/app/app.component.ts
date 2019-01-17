@@ -9,10 +9,10 @@ import { AppInterface } from './app-interface';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Practice app';
+  heading = 'Practice app';
 
   public displayData: Array<AppInterface> = [];
-  public postData:any;
+  // public postData:any = [];
 
   constructor(private http: HttpClient, private appService: AppService){}
 
@@ -30,11 +30,12 @@ export class AppComponent implements OnInit {
     });
   }
 
-  // addData(name: string): void{
-  //   this.appService.addData({name} as AppInterface).subscribe(name => {
-  //     this.postData = (name);
-  //   });
-  // }
+  addData(title: string): void{
+    this.appService.addData({title} as AppInterface).subscribe(response => {
+      this.displayData.push(response);
+      console.log(response);
+    });
+  }
 
   deleteData(id: AppInterface): void{
     this.displayData = this.displayData.filter(i => i !== id);

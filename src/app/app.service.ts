@@ -20,9 +20,9 @@ export class AppService {
     return this.http.get<AppInterface[]>(this.dataUrl);
   }
 
-  // addData(name: AppInterface): Observable<AppInterface[]>{
-  //   return this.http.post<AppInterface[]>(this.dataUrl, name);
-  // }
+  addData(title: AppInterface): Observable<AppInterface>{
+    return this.http.post<AppInterface>(this.dataUrl, title);
+  }
 
   deleteData (id: AppInterface | number): Observable<AppInterface>{
     const dataId = typeof id === 'number' ? id : id.id;
